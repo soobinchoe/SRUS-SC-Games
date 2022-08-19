@@ -6,7 +6,7 @@ tuid = "123"
 tname = "soobin"
 
 
-class TextPlayer(unittest.TestCase):
+class TestPlayer(unittest.TestCase):
     def testPlayerString(self):
         player = Player(tuid, tname)
         self.assertIn(tuid, str(player))

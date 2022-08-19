@@ -6,20 +6,30 @@ class PlayerList:
     def __init__(self):
         self.head = None
         self.tail = None
-        self.is_empty = False
 
-    def insert_at_end(self, player_node: PlayerNode):
+    def insert_at_end(self, new_node: PlayerNode):
         if not self.head:
-            self.head = player_node
-            self.tail = player_node
-            self.is_empty = True
+            self.head = new_node
+            self.tail = new_node
             return
 
         prev_node = self.tail
-        prev_node.next = player_node
+        prev_node.next = new_node
 
-        self.tail = player_node
+        self.tail = new_node
         self.tail.previous = prev_node
+
+    def insert_at_start(self, player_node: PlayerNode):
+        if not self.head:
+            self.head = player_node
+            self.tail = player_node
+            return
+
+        next_node = self.head
+        next_node.previous = player_node
+
+        self.head = player_node
+        self.head.next = next_node
 
 
 

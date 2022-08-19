@@ -44,6 +44,21 @@ class PlayerList:
         self.tail = prev_tail.previous
         prev_tail.previous = None
 
+    def delete_with_key(self, key):
+        if self.is_empty_bool:
+            print("Nothing on the List")
+            return
+        player_node = self.head
+        while player_node.next:
+            if player_node.player.uid == key:
+                prev_node = player_node.previous
+                next_node = player_node.next
+                player_node.next.previous = prev_node
+                player_node.previous.next = next_node
+                return
+            player_node = player_node.next
+
+
     def is_empty(self, player_node: PlayerNode):
         if not self.head:
             self.head = player_node

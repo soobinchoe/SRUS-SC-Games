@@ -8,6 +8,10 @@ class PlayerNode:
         self._previous = None
 
     @property
+    def player(self):
+        return self._player
+
+    @property
     def next(self):
         return self._next
 

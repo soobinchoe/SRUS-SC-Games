@@ -55,4 +55,14 @@ class TestPlayer(unittest.TestCase):
         player_list.delete_at_end()
         self.assertEqual(player_list.tail, player_node2)
 
-
+    def test_delete_with_key(self):
+        player_list = PlayerList()
+        player_node1 = PlayerNode(Player(tuid1, tname1))
+        player_node2 = PlayerNode(Player(tuid2, tname2))
+        player_node3 = PlayerNode(Player(tuid3, tname3))
+        player_list.insert_at_end(player_node1)
+        player_list.insert_at_end(player_node2)
+        player_list.insert_at_end(player_node3)
+        player_list.delete_with_key("2")
+        self.assertNotEqual(player_node1.next, player_node2)
+        self.assertEqual(player_node1.next, player_node3)

@@ -15,9 +15,17 @@ class PlayerNode:
     def previous(self):
         return self._previous
 
+    @next.setter
+    def next(self, value):
+        self._next = value
+
+    @previous.setter
+    def previous(self, value):
+        self._previous = value
+
     @property
     def key(self):
         return self._player.uid
 
     def __str__(self):
-        return f"node : {self}"
+        return f"node : {self._player}"

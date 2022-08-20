@@ -14,10 +14,6 @@ class Player:
     def __iter__(self):
         return (i for i in (self.name, self.uid))
 
-    # def __repr__(self):
-    #     class_name = type(self).__name__
-    #     return "{}({!r}, {!r})".format(class_name, *self)
-
     def __str__(self):
         return f"Player name : {self.name} & id: {self.uid}"
 

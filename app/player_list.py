@@ -91,11 +91,11 @@ class PlayerList:
 
 if __name__ == "__main__":
     list1 = PlayerList()
-    # node = PlayerNode(Player("1", "player1"))
-    # node2 = PlayerNode(Player("2", "player2"))
-    # node3 = PlayerNode(Player("3", "player3"))
-    # list1.insert_at_end(node)
-    # list1.insert_at_end(node2)
-    # list1.insert_at_end(node3)
+    node = PlayerNode(Player("1", "player1"))
+    node2 = PlayerNode(Player("2", "player2"))
+    node3 = PlayerNode(Player("3", "player3"))
+    list1.insert_at_end(node)
+    list1.insert_at_end(node2)
+    list1.insert_at_end(node3)
 
-    list1.display()
+    list1.display(False)

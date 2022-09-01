@@ -6,13 +6,11 @@ class PlayerList:
     def __init__(self):
         self.head = None
         self.tail = None
-        self.is_empty_bool = True
 
     def insert_at_end(self, new_node: PlayerNode):
         if not self.head:
             self.head = new_node
             self.tail = new_node
-            self.is_empty_bool = False
             return
 
         prev_node = self.tail
@@ -25,7 +23,6 @@ class PlayerList:
         if not self.head:
             self.head = new_node
             self.tail = new_node
-            self.is_empty_bool = False
             return
 
         next_node = self.head
@@ -35,8 +32,8 @@ class PlayerList:
         self.head.next = next_node
 
     def delete_at_start(self):
-        if self.is_empty_bool:
-            print("Nothing on the List")
+        if self.is_empty():
+            print("Nothing")
             return
         prev_head = self.head
         prev_head.next.previous = None
@@ -44,7 +41,7 @@ class PlayerList:
         prev_head.next = None
 
     def delete_at_end(self):
-        if self.is_empty_bool:
+        if self.is_empty():
             print("Nothing on the List")
             return
         prev_tail = self.tail
@@ -53,7 +50,7 @@ class PlayerList:
         prev_tail.previous = None
 
     def delete_with_key(self, key):
-        if self.is_empty_bool:
+        if self.is_empty():
             print("Nothing on the List")
             return
         player_node = self.head
@@ -67,7 +64,7 @@ class PlayerList:
             player_node = player_node.next
 
     def display(self, forward=True):
-        if self.is_empty_bool:
+        if self.is_empty():
             print("Nothing on the List")
             return
         if forward:
@@ -81,12 +78,10 @@ class PlayerList:
                 print(player_node)
                 player_node = player_node.previous
 
-    # def is_empty(self, player_node: PlayerNode):
-    #     if not self.head:
-    #         self.head = player_node
-    #         self.tail = player_node
-    #         self.is_empty_bool = False
-    #         return
+    def is_empty(self):
+        if not self.head:
+            return True
+        return False
 
 
 if __name__ == "__main__":
@@ -97,5 +92,8 @@ if __name__ == "__main__":
     list1.insert_at_end(node)
     list1.insert_at_end(node2)
     list1.insert_at_end(node3)
+    list1.delete_at_start()
 
-    list1.display(False)
+    # list1.is_empty()
+
+    # list1.display(False)

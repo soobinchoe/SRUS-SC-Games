@@ -1,4 +1,5 @@
 from argon2 import PasswordHasher
+
 """ This module provide Hash function for hashing password"""
 from argon2.exceptions import VerifyMismatchError
 """ This module verify password """
@@ -22,6 +23,7 @@ class Player:
         self._uid = uid
         self._name = name
         self._password = None
+        self._score = 0
 
     @property
     def uid(self):
@@ -30,6 +32,10 @@ class Player:
     @property
     def name(self):
         return self._name
+
+    @property
+    def score(self):
+        return self._score
 
     def __iter__(self):
         """ This method iterate player"""
@@ -51,6 +57,32 @@ class Player:
             return ph.verify(self._password, password)
         except VerifyMismatchError:
             return False
+
+    @score.setter
+    def score(self, value):
+        """ This method set score value to player """
+        if value > 0:
+            self._score = value
+
+    def __eq__(self, other):
+        """ This method is to compare if other player's score is equal to current player """
+        return self._score == other.score
+
+    def __ge__(self, other):
+        """ This method is to compare if other player's score is greater than or equal to current player """
+        return self._score >= other.score
+
+    def __le__(self, other):
+        """ This method is to compare if other player's score is less than or equal to current player """
+        return self._score <= other.score
+
+    def __lt__(self, other):
+        """ This method is to compare if other player's score is less than current player """
+        return self._score < other.score
+
+    def __gt__(self, other):
+        """ This method is to compare if other player's score is greater than current player """
+        return self._score > other.score
 
 
 if __name__ == "__main__":

@@ -1,4 +1,4 @@
-from app.player import Player
+
 from app.player_node import PlayerNode
 
 
@@ -96,6 +96,23 @@ class PlayerList:
         if not self.head:
             return True
         return False
+
+    def sort_descending(self):
+        if self.head == self.tail:
+            return self
+        else:
+            pivot = self.tail.player
+
+        player_greater = []
+        player_lower = []
+
+        player_node = self.head
+        while player_node.next:
+            if player_node.player.__gt__(pivot):
+                player_greater.append(pivot)
+            else:
+                player_lower.append(pivot)
+
 
 
 if __name__ == "__main__":

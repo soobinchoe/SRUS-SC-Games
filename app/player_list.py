@@ -97,21 +97,59 @@ class PlayerList:
             return True
         return False
 
-    def sort_descending(self):
-        if self.head == self.tail:
-            return self
+    def sort_descending(self, player_arr=None):
+        if not player_arr:
+            player_arr = []
+            player_node = self.head
+            while player_node:
+                player_arr.append(player_node.player)
+                player_node = player_node.next
+
+        player_list = []
+        for player in player_arr:
+            player_list.append(player)
+
+        if len(player_arr) <= 1:
+            return player_arr
         else:
-            pivot = self.tail.player
+            pivot = player_arr.pop()
 
-        player_greater = []
-        player_lower = []
+        list_greater = []
+        list_lower = []
 
-        player_node = self.head
-        while player_node.next:
-            if player_node.player.__gt__(pivot):
-                player_greater.append(pivot)
+        for player in player_arr:
+            if player > pivot:
+                list_greater.append(player)
             else:
-                player_lower.append(pivot)
+                list_lower.append(player)
+
+        sorted_list = list_lower + [pivot] + list_greater
+        if player_list == sorted_list:
+            return sorted_list
+        else:
+            return self.sort_descending(sorted_list)
+
+
+
+        # if self.head == self.tail:
+        #     return self
+        # else:
+        #     pivot = self.tail.player
+        #
+        # player_greater = []
+        # player_lower = []
+        # sorted_list = []
+        #
+        # player_node = self.head
+        # while player_node.next:
+        #     if player_node.player >= pivot:
+        #         player_greater.append(player_node)
+        #         player_node = player_node.next
+        #     else:
+        #         player_lower.append(player_node)
+        #         player_node = player_node.next
+
+
 
 
 

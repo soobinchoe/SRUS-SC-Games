@@ -19,19 +19,19 @@ class TestComparisonPlayer(unittest.TestCase):
         self.player3.score = 10
 
     def test_score_eq(self):
-        self.assertTrue(self.player1.__eq__(self.player3))
+        self.assertTrue(self.player1 == self.player3)
 
     def test_score_ge(self):
-        self.assertTrue(self.player1.__ge__(self.player3))
+        self.assertTrue(self.player1 >= self.player3)
 
     def test_score_le(self):
-        self.assertTrue(self.player1.__le__(self.player2))
+        self.assertTrue(self.player1 <= self.player2)
 
     def test_score_lt(self):
-        self.assertTrue(self.player1.__lt__(self.player2))
+        self.assertTrue(self.player1 < self.player2)
 
     def test_score_gt(self):
-        self.assertTrue(self.player2.__gt__(self.player1))
+        self.assertTrue(self.player2 > self.player1)
 
     def test_sort_descending(self):
         self.player_list.sort_descending()

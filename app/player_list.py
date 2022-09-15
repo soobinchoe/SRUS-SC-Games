@@ -1,4 +1,4 @@
-
+from app.player import Player
 from app.player_node import PlayerNode
 
 
@@ -13,6 +13,7 @@ class PlayerList:
         tail : PlayerNode
             the tail node of the list
         """
+
     def __init__(self):
         """ This method initialize player list class attributes """
         self.head = None
@@ -97,72 +98,39 @@ class PlayerList:
             return True
         return False
 
-    def sort_descending(self, player_arr=None):
-        if not player_arr:
-            player_arr = []
-            player_node = self.head
-            while player_node:
-                player_arr.append(player_node.player)
-                player_node = player_node.next
+    def sort_descending(self):
+        """ This method make player list as array list then call sorting method"""
+        if self.head == self.tail:
+            return
 
-        player_list = []
-        for player in player_arr:
-            player_list.append(player)
+        player_node = self.head
+        player_array = []
+        while player_node:
+            player_array.append(player_node)
+            player_node = player_node.next
 
-        if len(player_arr) <= 1:
-            return player_arr
-        else:
-            pivot = player_arr.pop()
+        self.player_sort(player_array, 0, len(player_array) - 1)
+        return player_array
 
-        list_greater = []
-        list_lower = []
+    def player_sort(self, player_array, left, right):
+        """ This method sort player array list recursively by quick sort"""
+        if left < right:
+            pivot = self.partition(player_array, left, right)
+            self.player_sort(player_array, left, pivot-1)
+            self.player_sort(player_array, pivot+1, right)
 
-        for player in player_arr:
-            if player > pivot:
-                list_greater.append(player)
-            else:
-                list_lower.append(player)
+    def partition(self, player_array, left, right):
+        """ This method swap player order by player score """
+        pivot = player_array[right]
+        i = (left-1)
+        for j in range(left, right):
+            if player_array[j].player > pivot.player:
+                i += 1
+                temp = player_array[i]
+                player_array[i] = player_array[j]
+                player_array[j] = temp
 
-        sorted_list = list_lower + [pivot] + list_greater
-        if player_list == sorted_list:
-            return sorted_list
-        else:
-            return self.sort_descending(sorted_list)
-
-
-
-        # if self.head == self.tail:
-        #     return self
-        # else:
-        #     pivot = self.tail.player
-        #
-        # player_greater = []
-        # player_lower = []
-        # sorted_list = []
-        #
-        # player_node = self.head
-        # while player_node.next:
-        #     if player_node.player >= pivot:
-        #         player_greater.append(player_node)
-        #         player_node = player_node.next
-        #     else:
-        #         player_lower.append(player_node)
-        #         player_node = player_node.next
-
-
-
-
-
-if __name__ == "__main__":
-    list1 = PlayerList()
-    # node = PlayerNode(Player("1", "player1"))
-    # node2 = PlayerNode(Player("2", "player2"))
-    # node3 = PlayerNode(Player("3", "player3"))
-    # list1.insert_at_end(node)
-    # list1.insert_at_end(node2)
-    # list1.insert_at_end(node3)
-    list1.delete_at_start()
-
-    # list1.is_empty()
-
-    # list1.display(False)
+        temp = player_array[i + 1]
+        player_array[i + 1] = player_array[right]
+        player_array[right] = temp
+        return i + 1

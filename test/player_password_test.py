@@ -17,3 +17,5 @@ class TestPassword(unittest.TestCase):
         player = Player(tuid, tname)
         player.add_password(tpassword)
         self.assertTrue(player.verify_password(tpassword))
+
+# add invalid password

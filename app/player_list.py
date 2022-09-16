@@ -18,6 +18,7 @@ class PlayerList:
         """ This method initialize player list class attributes """
         self.head = None
         self.tail = None
+        # consider playerlist in init (easy to test)
 
     def insert_at_end(self, new_node: PlayerNode):
         """ This method insert player at the end of the list """
@@ -98,7 +99,8 @@ class PlayerList:
             return True
         return False
 
-    def sort_descending(self):
+    @staticmethod
+    def sort_descending():
         """ This method make player list as array list then call sorting method"""
         if self.head == self.tail:
             return

@@ -96,7 +96,7 @@ class Player:
         return player_array
 
     @staticmethod
-    def (player_list):
+    def sort_descending(player_list):
         """ Call transfer array list method then call sorting method"""
         try:
             player_array = Player.transfer_array(player_list)

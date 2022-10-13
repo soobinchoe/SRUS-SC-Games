@@ -28,3 +28,20 @@ class PlayerBST:
                 current_node.right = PlayerBNode(player)
             else:
                 self._insert(player, current_node.right)
+        else:
+            current_node.player.name = key
+
+    def search(self, key):
+        if not self.root or self.root.player.name == key:
+            return key
+
+        return self._search(key, self.root)
+
+    def _search(self, key, current_node):
+        if key == current_node.player.name:
+            return True
+        elif key < current_node.player.name and current_node.left:
+            return self._search(key, current_node.left)
+        elif key > current_node.player.name and current_node.right:
+            return self._search(key, current_node.right)
+        return False

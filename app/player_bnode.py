@@ -8,7 +8,7 @@ class PlayerBNode:
             Player class
         left :
             left child of Node
-        previous :
+        right :
             right child of Node
     """
     def __init__(self, player):

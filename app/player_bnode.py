@@ -1,4 +1,16 @@
 class PlayerBNode:
+    """
+        Represent Player Binary search tree Node
+
+        Attributes
+        ----------
+        player : Player
+            Player class
+        left :
+            left child of Node
+        previous :
+            right child of Node
+    """
     def __init__(self, player):
         self._player = player
         self._left = None

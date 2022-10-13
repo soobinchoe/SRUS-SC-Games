@@ -7,15 +7,8 @@ class PlayerBST:
         """ Initialize root node to None """
         self.root = None
 
-    @property
-    def root(self):
-        return self.root
-
-    @root.setter
-    def root(self, value):
-        self._root = value
-
     def insert(self, player: Player):
+        """ Set root & Call _insert method """
         if not self.root:
             self.root = PlayerBNode(player)
             return
@@ -23,6 +16,7 @@ class PlayerBST:
         self._insert(player, self.root)
 
     def _insert(self, player, current_node: PlayerBNode):
+        """ Insert player to BST recursively by comparing key """
         key = player.name
         if key < current_node.player.name:
             if not current_node.left:

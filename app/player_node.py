@@ -3,19 +3,19 @@ from app.player import Player
 
 class PlayerNode:
     """
-            PlayerList class userd to represent Player's List
+        Represent Player List Node
 
-            Attributes
-            ----------
-            player : Player
-                Player class
-            next :
-                pointer of next node
-            previous :
-                pointer of previous node
-            """
+        Attributes
+        ----------
+        player : Player
+            Player class
+        next :
+            pointer of next node
+        previous :
+            pointer of previous node
+    """
     def __init__(self, player: Player):
-        """ This method initialize player node class attributes """
+        """ Initialize player node class attributes """
         self._player = player
         self._next = None
         self._previous = None

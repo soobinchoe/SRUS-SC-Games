@@ -32,12 +32,14 @@ class PlayerBST:
             current_node.player.name = key
 
     def search(self, key):
+        """ Check if no root or root is key, otherwise call search method """
         if not self.root or self.root.player.name == key:
             return key
 
         return self._search(key, self.root)
 
     def _search(self, key, current_node):
+        """ Search through BST using key """
         if key == current_node.player.name:
             return True
         elif key < current_node.player.name and current_node.left:
@@ -45,3 +47,39 @@ class PlayerBST:
         elif key > current_node.player.name and current_node.right:
             return self._search(key, current_node.right)
         return False
+
+    def sort_bst(self, root, nodes):
+        """ Make array list of bst """
+        if not root:
+            return
+
+        self.sort_bst(root.left, nodes)
+        nodes.append(root)
+        self.sort_bst(root.right, nodes)
+
+    def balance_tree(self):
+        """ Call sort method and balance method """
+        nodes = []
+        self.sort_bst(self.root, nodes)
+
+        return self._balance_tree(nodes)
+
+    def _balance_tree(self, nodes):
+        """ Make balanced BST """
+        if not nodes:
+            return None
+
+        mid = len(nodes) // 2
+        node = PlayerBNode(nodes[mid])
+
+        node.left = self._balance_tree(nodes[:mid])
+        node.right = self._balance_tree(nodes[mid+1:])
+        return node
+
+    def pre_order(self, node):
+        """ Print balanced Binary Search Tree in Order """
+        if not node:
+            return
+        print(node.player.player.name)
+        self.pre_order(node.left)
+        self.pre_order(node.right)

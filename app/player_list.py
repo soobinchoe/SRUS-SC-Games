@@ -97,5 +97,3 @@ class PlayerList:
         if not self.head:
             return True
         return False
-
-

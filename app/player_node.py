@@ -46,3 +46,6 @@ class PlayerNode:
 
     def __str__(self):
         return f"{self._player}"
+
+    def __lt__(self, other):
+        return self.player.score < other.player.score

@@ -82,7 +82,7 @@ class Player:
         return self._score > other.score
 
     @staticmethod
-    def transfer_array(player_list):
+    def convert_to_list(player_list):
         """ Make player list as array list """
         if player_list.head == player_list.tail:
             return
@@ -96,39 +96,39 @@ class Player:
         return player_array
 
     @staticmethod
-    def (player_list):
+    def sort_descending(players):
         """ Call transfer array list method then call sorting method"""
         try:
-            player_array = Player.transfer_array(player_list)
+            player_list = Player.convert_to_list(players)
         except AttributeError:
-            player_array = player_list
+            player_list = players
 
-        Player.player_sort(player_array, 0, len(player_array) - 1)
-        return player_array
+        Player._player_sort(player_list, 0, len(player_list) - 1)
+        return player_list
 
     @staticmethod
-    def player_sort(player_array, left, right):
+    def _player_sort(player_list, left, right):
         """ Sort player array list recursively by quick sort"""
         if left < right:
-            pivot = Player.partition(player_array, left, right)
-            Player.player_sort(player_array, left, pivot - 1)
-            Player.player_sort(player_array, pivot + 1, right)
+            pivot = Player._partition(player_list, left, right)
+            Player._player_sort(player_list, left, pivot - 1)
+            Player._player_sort(player_list, pivot + 1, right)
 
     @staticmethod
-    def partition(player_array, left, right):
+    def _partition(player_list, left, right):
         """ Swap player order by player score """
-        pivot = player_array[right]
+        pivot = player_list[right]
         i = (left - 1)
         for j in range(left, right):
-            if player_array[j].player > pivot.player:
+            if player_list[j].player > pivot.player:
                 i += 1
-                temp = player_array[i]
-                player_array[i] = player_array[j]
-                player_array[j] = temp
+                temp = player_list[i]
+                player_list[i] = player_list[j]
+                player_list[j] = temp
 
-        temp = player_array[i + 1]
-        player_array[i + 1] = player_array[right]
-        player_array[right] = temp
+        temp = player_list[i + 1]
+        player_list[i + 1] = player_list[right]
+        player_list[right] = temp
         return i + 1
 
 

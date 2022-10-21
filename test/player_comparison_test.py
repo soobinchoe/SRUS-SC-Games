@@ -35,10 +35,7 @@ class TestComparisonPlayer(unittest.TestCase):
         self.assertTrue(self.player2 > self.player1)
 
     def test_sort_descending(self):
-        sorted_list1 = Player.sort_descending(self.player_list)
-        sorted_list2 = Player.transfer_array(self.player_list)
-        random.shuffle(sorted_list2)
-        sorted_list2 = Player.sort_descending(sorted_list2)
-        self.assertEqual(sorted_list1, sorted_list2)
+        self.assertEqual(Player.sort_descending(self.player_list),
+                         sorted(Player.convert_to_list(self.player_list), reverse=True))
 
 
